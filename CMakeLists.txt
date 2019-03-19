@@ -23,11 +23,6 @@ generate_messages(
   trajectory_msgs
 )
 
-################################################
-## Declare ROS dynamic reconfigure parameters ##
-################################################
-
-
 catkin_package(
  INCLUDE_DIRS include
  CATKIN_DEPENDS
