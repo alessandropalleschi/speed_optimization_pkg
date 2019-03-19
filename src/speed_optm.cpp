@@ -1,7 +1,14 @@
 #include "speed_optimization_pkg/speed_optimization_server.h"
+speed_optimization_server::speed_optimization_server()
+{
+  ds_ = 1.0;
+  time_ = 0;
 
+}
 
-
+speed_optimization_server::~speed_optimization_server()
+{
+}
 
 bool speed_optimization_server::speed_optimization(speed_optimization_pkg::TrajectoryOptimization::Request  &req,
          speed_optimization_pkg::TrajectoryOptimization::Response  &res)
@@ -67,17 +74,3 @@ bool speed_optimization_server::speed_optimization(speed_optimization_pkg::Traje
 
   return true;
 }
-
-
-speed_optimization_server::speed_optimization_server()
-{
-  ds_ = 1.0;
-  time_ = 0;
-
-}
-
-speed_optimization_server::~speed_optimization_server()
-{
-}
-
-
