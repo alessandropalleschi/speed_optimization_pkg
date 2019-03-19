@@ -1,0 +1,12 @@
+<launch>
+
+    <param name="fileID" value="//home/alessandro/Traiettorie_Franka/Vel/Traj.txt" /> 
+    <param name="joint_trajectory_command_topic" value="/panda_arm/panda_arm_controller/command" /> 
+
+    <rosparam command="load" file="$(find franka_interface_pkg)/config/limits.yaml" />
+    <node name="speed_optm_client" pkg="speed_optimization_pkg" type="speed_optm_client_node" output="screen" required="true"/>  
+
+
+
+</launch>
+

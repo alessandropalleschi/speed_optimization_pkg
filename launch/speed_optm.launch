@@ -1,0 +1,8 @@
+<launch>
+
+    <node name="speed_optm_server" pkg="speed_optimization_pkg" type="speed_optm_server_node" output="screen" required="true"/>  
+
+
+
+</launch>
+

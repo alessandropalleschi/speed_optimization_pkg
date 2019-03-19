@@ -1,0 +1,4 @@
+trajectory_msgs/JointTrajectory sent_traj
+float64[] qd_max
+---
+trajectory_msgs/JointTrajectory optm_traj
