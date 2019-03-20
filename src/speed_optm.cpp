@@ -1,18 +1,15 @@
 #include "speed_optimization_pkg/speed_optimization_server.h"
-speed_optimization_server::speed_optimization_server()
-{
-  ds_ = 1.0;
-  time_ = 0;
 
-}
 
-speed_optimization_server::~speed_optimization_server()
-{
-}
+
 
 bool speed_optimization_server::speed_optimization(speed_optimization_pkg::TrajectoryOptimization::Request  &req,
          speed_optimization_pkg::TrajectoryOptimization::Response  &res)
 { 
+
+      trajectory_msgs::JointTrajectory sent_traj_;
+    trajectory_msgs::JointTrajectory optm_traj_;
+
   ros::WallTime start, end;
 
   start = ros::WallTime::now();
@@ -21,6 +18,7 @@ bool speed_optimization_server::speed_optimization(speed_optimization_pkg::Traje
   
   sent_traj_ = req.sent_traj;
   optm_traj_ = req.sent_traj;
+  std::vector<double> qd_max_;
   qd_max_ = req.qd_max;
   
   // One point less since it's assumed that q(0) is the actual position of the robot
@@ -38,7 +36,7 @@ bool speed_optimization_server::speed_optimization(speed_optimization_pkg::Traje
         // compute dq/ds
     		diff_aux_(kk) = (sent_traj_.points.at(i+1).positions.at(kk)-sent_traj_.points.at(i).positions.at(kk))/ds_;
     		
-        bound_aux_(kk) = fabs(diff_aux_(kk)/(qd_max_.at(kk)));
+        bound_aux_(kk) = fabs(diff_aux_(kk)/(sent_traj_.points.at(i+1).velocities.at(kk)));
 
     	}
 
@@ -74,3 +72,17 @@ bool speed_optimization_server::speed_optimization(speed_optimization_pkg::Traje
 
   return true;
 }
+
+
+speed_optimization_server::speed_optimization_server()
+{
+  ds_ = 1.0;
+  time_ = 0;
+
+}
+
+speed_optimization_server::~speed_optimization_server()
+{
+}
+
+
