@@ -12,7 +12,7 @@ speed_optimization_client::speed_optimization_client()
   }
 
   // pub_command_right = nh.advertise<trajectory_msgs::JointTrajectory>("/panda_arm/panda_arm_controller/command", 1);
-  pub_command_right_ = nh_.advertise<trajectory_msgs::JointTrajectory>("/panda_arm/panda_arm_controller/command", 1);
+  pub_command_right_ = nh_.advertise<trajectory_msgs::JointTrajectory>(joint_trajectory_command_topic_, 1);
 
 
 
