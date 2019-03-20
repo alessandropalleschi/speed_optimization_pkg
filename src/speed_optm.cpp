@@ -1,14 +1,12 @@
 #include "speed_optimization_pkg/speed_optimization_server.h"
 
 
-
-
 bool speed_optimization_server::speed_optimization(speed_optimization_pkg::TrajectoryOptimization::Request  &req,
          speed_optimization_pkg::TrajectoryOptimization::Response  &res)
 { 
-
-      trajectory_msgs::JointTrajectory sent_traj_;
-    trajectory_msgs::JointTrajectory optm_traj_;
+	
+  trajectory_msgs::JointTrajectory sent_traj_;
+  trajectory_msgs::JointTrajectory optm_traj_;
 
   ros::WallTime start, end;
 
@@ -18,10 +16,8 @@ bool speed_optimization_server::speed_optimization(speed_optimization_pkg::Traje
   
   sent_traj_ = req.sent_traj;
   optm_traj_ = req.sent_traj;
-  std::vector<double> qd_max_;
-  qd_max_ = req.qd_max;
   
-  // One point less since it's assumed that q(0) is the actual position of the robot
+  // One point less since it's assumed that q(0) is the initial position of the robot
   optm_traj_.points.resize(sent_traj_.points.size()-1);
 
   ds_ = 1.0;
@@ -51,7 +47,6 @@ bool speed_optimization_server::speed_optimization(speed_optimization_pkg::Traje
     		velocity_command_.at(jj) = (b_k_.at(i)*diff_aux_(jj));
     	}
 
-
       // Compute dt and next waypoint time_from_start
      	dt_.push_back(a_k_.at(i)*ds_);
     	time_ += dt_.at(i);
@@ -63,10 +58,9 @@ bool speed_optimization_server::speed_optimization(speed_optimization_pkg::Traje
     	optm_traj_.points.at(i).velocities = velocity_command_;
   }
 
-
-    res.optm_traj = optm_traj_;
-    end = ros::WallTime::now();
-
+  res.optm_traj = optm_traj_;
+  
+  end = ros::WallTime::now();
   double elapsed_time = (end - start).toNSec() * 1e-6;;
   ROS_INFO("Finished in: %f milliseconds", elapsed_time);
 
@@ -78,7 +72,6 @@ speed_optimization_server::speed_optimization_server()
 {
   ds_ = 1.0;
   time_ = 0;
-
 }
 
 speed_optimization_server::~speed_optimization_server()
