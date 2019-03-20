@@ -16,7 +16,7 @@ int main(int argc, char **argv)
       return 1;
     }  
     
-    ros::Duration(0.1).sleep();
+    ros::Duration(0.5).sleep();
     client.send_trajectory(client.srv_.response.optm_traj);
     ros::spin();
 
