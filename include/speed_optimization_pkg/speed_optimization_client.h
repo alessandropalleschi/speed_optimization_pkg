@@ -24,7 +24,7 @@ public:
 	std::vector<double> qd_max_;
 	trajectory_msgs::JointTrajectory traj_;
 	std::string fileID_, joint_trajectory_command_topic_;
-    ros::Publisher pub_command_right_;
+    	ros::Publisher pub_command_right_;
 
 private:
 
@@ -32,6 +32,6 @@ private:
 
 	std::ifstream read_traj_;
 
-    ros::NodeHandle nh_;
+    	ros::NodeHandle nh_;
 
 };
