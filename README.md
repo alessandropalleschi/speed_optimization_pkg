@@ -1,5 +1,5 @@
 # speed_optimization_pkg
-A ROS package to perform optimization over a fixed joint path for velocity constrained manipulators.
+A ROS package to perform optimization over a fixed joint path for velocity constrained 7-DoF manipulators.
 The code gives the minimum time trajectory needed to follow the path while coping with constraints of the type:
 
   <img src="https://latex.codecogs.com/svg.latex?\Large&space;|\dot{q}|\leq\bar{\dot{q}}" title="\Large |\dot{q}|\leq\bar{\dot{q}}" />  
@@ -35,4 +35,6 @@ To launch the client, in a terminal:
 
     roslaunch speed_optimization_pkg speed_optm_client.launch
 
+Note: The robot has to start in this configuration:
 
+      q(0)= [0.00000000   0.15171755  -0.00000000  -2.16915381  -0.00000000   2.32087135   0.00000000]
