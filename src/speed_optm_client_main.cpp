@@ -24,7 +24,8 @@ int main(int argc, char **argv)
     client.send_trajectory(client.srv_.response.optm_traj);
 
 
-    while(ros::ok()){
+    while(ros::ok())
+    {
       f.sleep();
     }
   return 0;
